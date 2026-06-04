@@ -17,8 +17,16 @@ export { OrdersTable } from './components/shared/OrdersTable';
 
 // Hooks
 export { useOrders, useOrdersData, useCashierCashAdvances } from './hooks/useOperations';
+
+// Services
 export { orderDb } from './services/orderDb';
 export { cashierDb } from './services/cashierDb';
 export { designerDb } from './services/designerDb';
 export { productionDb } from './services/productionDb';
 export { paymentDb } from './services/paymentDb';
+
+// Types, Constants, Utils
+export type { CardStatus, CashAdvanceEligibility } from './operations.types';
+export { SIZE_STYLES, statusSteps, CA_LIMIT } from './operations.constants';
+export { mapOrder, mapStatusStep, fmt } from './operations.utils';
+

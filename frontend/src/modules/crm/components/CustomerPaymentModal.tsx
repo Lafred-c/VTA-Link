@@ -2,51 +2,12 @@ import React, {useState} from "react";
 import {motion, AnimatePresence} from "framer-motion";
 import {
   X,
-  Smartphone,
-  CreditCard,
-  Building2,
   QrCode,
   AlertCircle,
 } from "lucide-react";
 
-type PaymentMethod = "GCash" | "PayMaya" | "Bank Transfer";
-type PaymentType = "full" | "partial";
-
-const QR_IMAGES: Record<PaymentMethod, string> = {
-  GCash: "/images/QR1.png",
-  PayMaya: "/images/QR2.png",
-  "Bank Transfer": "/images/QR3.png",
-};
-
-const METHOD_ICONS: Record<PaymentMethod, React.ReactNode> = {
-  GCash: <Smartphone size={20} />,
-  PayMaya: <CreditCard size={20} />,
-  "Bank Transfer": <Building2 size={20} />,
-};
-
-const METHOD_COLORS: Record<
-  PaymentMethod,
-  {ring: string; bg: string; text: string; badge: string}
-> = {
-  GCash: {
-    ring: "ring-blue-400",
-    bg: "bg-blue-50",
-    text: "text-blue-700",
-    badge: "bg-blue-500",
-  },
-  PayMaya: {
-    ring: "ring-green-400",
-    bg: "bg-green-50",
-    text: "text-green-700",
-    badge: "bg-green-500",
-  },
-  "Bank Transfer": {
-    ring: "ring-amber-400",
-    bg: "bg-amber-50",
-    text: "text-amber-700",
-    badge: "bg-amber-500",
-  },
-};
+import type { PaymentMethod, PaymentType } from "../crm.types";
+import { QR_IMAGES, METHOD_ICONS, METHOD_COLORS } from "../crm.constants";
 
 interface CustomerPaymentModalProps {
   isOpen: boolean;

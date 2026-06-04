@@ -1,9 +1,10 @@
 //src\components\Shared\Inventory\EditMaterialModal.tsx
 
 import { useState, useEffect } from "react";
+import { getFlagPriority, renderSupplierNameWithFlag } from "../../inventory.utils";
 import { Modal } from "@/components/feedback/Modal";
 import { Button } from "@/components/ui/Button";
-import { Star, AlertTriangle, Flag } from "lucide-react";
+
 import type { Material, UserRole } from "@/Types";
 import { permissions } from "@/util/permissions";
 
@@ -15,25 +16,7 @@ interface EditMaterialModalProps {
   suppliers: { id: string; name: string; flag_category?: string }[];
   onSave: (data: Partial<Material>, supplierIds?: string[]) => void;
 }
-
-const getFlagPriority = (category?: string) => {
-  if (category === "Preferred") return 1;
-  if (category === "Warning") return 3;
-  if (category === "Critical") return 4;
-  return 2;
-};
-
-const renderSupplierNameWithFlag = (s: any) => {
-  const category = s.flag_category;
-  return (
-    <span className="flex items-center gap-1.5">
-      {category === "Preferred" && <Star size={14} className="text-yellow-500 fill-yellow-500 flex-shrink-0" />}
-      {category === "Warning" && <AlertTriangle size={14} className="text-orange-500 flex-shrink-0" />}
-      {category === "Critical" && <Flag size={14} className="text-red-600 fill-red-600 flex-shrink-0" />}
-      <span className="truncate">{s.name}</span>
-    </span>
-  );
-};
+// Imported from inventory.utils.ts
 
 export const EditMaterialModal: React.FC<EditMaterialModalProps> = ({
   isOpen,

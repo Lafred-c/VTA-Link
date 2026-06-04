@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { X, Plus, Trash2 } from "lucide-react";
 import type { AdminProduct } from "@/Types";
+import type { BOMRow } from "../../inventory.types";
 
 interface EditProductModalProps {
   isOpen: boolean;
@@ -11,7 +12,7 @@ interface EditProductModalProps {
     bom: { inventory_item_id: string; quantity_required: number }[]) => void;
 }
 
-interface BOMRow { inventory_item_id: string; quantity_required: number; }
+// Type imported from inventory.types.ts
 
 export const EditProductModal: React.FC<EditProductModalProps> = ({ isOpen, product, materials, onClose, onSave }) => {
   const [form, setForm] = useState({ name: "", category: "", variant: "", size_spec: "", profit_fee: "", description: "" });

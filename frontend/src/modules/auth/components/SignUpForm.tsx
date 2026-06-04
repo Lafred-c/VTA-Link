@@ -13,15 +13,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import {motion, AnimatePresence} from "framer-motion";
-
-const fadeUp = {
-  hidden: {opacity: 0, y: 18},
-  visible: (delay: number = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: {duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] as const, delay},
-  }),
-};
+import { fadeUp, computePasswordStrength } from "../auth.utils";
 
 export const SignUpForm = () => {
   const navigate = useNavigate();
@@ -104,22 +96,10 @@ export const SignUpForm = () => {
     setSubmitLoading(false);
   };
 
-  const passwordStrength = useMemo(() => {
-    const p = formData.password;
-    if (!p) return {score: 0, label: "", color: ""};
-    let score = 0;
-    if (p.length >= 8) score++;
-    if (p.length >= 12) score++;
-    if (/[A-Z]/.test(p) && /[a-z]/.test(p)) score++;
-    if (/\d/.test(p)) score++;
-    if (/[^A-Za-z0-9]/.test(p)) score++;
-
-    if (score <= 1) return {score: 1, label: "Weak", color: "#ef4444"};
-    if (score <= 2) return {score: 2, label: "Fair", color: "#f59e0b"};
-    if (score <= 3) return {score: 3, label: "Good", color: "#3b82f6"};
-    if (score <= 4) return {score: 4, label: "Strong", color: "#22c55e"};
-    return {score: 5, label: "Excellent", color: "#10b981"};
-  }, [formData.password]);
+  const passwordStrength = useMemo(
+    () => computePasswordStrength(formData.password),
+    [formData.password]
+  );
 
   return (
     <div

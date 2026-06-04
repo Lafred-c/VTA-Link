@@ -1,0 +1,2 @@
+// Inventory constants placeholder
+export {};

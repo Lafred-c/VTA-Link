@@ -7,3 +7,8 @@ export { useProductCatalog, useCartData } from './hooks/useCrm';
 export { LandingContent } from './components/landing/LandingContent';
 export { OrdersView } from './components/OrdersView';
 export { crmDb, chat } from './services/crmDb';
+
+// Helpers and Configurations
+export * from './crm.types';
+export * from './crm.constants';
+export * from './crm.utils';

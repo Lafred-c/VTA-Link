@@ -1,19 +1,15 @@
 // src/components/Shared/Orders/OrderStatusBadge.tsx
 // Single source of truth — uses centralized color map from util/formatters
 
+import React from "react";
 import { getOrderStatusColor } from "@/util/formatters";
+import { SIZE_STYLES } from "../../operations.constants";
 
 interface OrderStatusBadgeProps {
   status: string;
   paymentStatus?: string;
   size?: "sm" | "md" | "lg";
 }
-
-const SIZE_STYLES: Record<string, string> = {
-  sm: "px-2 py-0.5 text-xs",
-  md: "px-3 py-1 text-sm",
-  lg: "px-4 py-1.5 text-base",
-};
 
 export const OrderStatusBadge: React.FC<OrderStatusBadgeProps> = ({
   status,

@@ -1,37 +1,7 @@
 import {Outlet, useLocation} from "react-router-dom";
 import {motion, AnimatePresence} from "framer-motion";
 import {Printer, Palette, Zap} from "lucide-react";
-
-/* ── Framer Motion variants ─────────────────────────────────────────── */
-const fadeUp = {
-  hidden: {opacity: 0, y: 18},
-  visible: (delay: number = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: {duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] as const, delay},
-  }),
-};
-
-const floatVariant = (yRange: number, rotRange: number, dur: number) => ({
-  animate: {
-    y: [0, -yRange, 0],
-    rotate: [0, rotRange, 0],
-    transition: {duration: dur, ease: "easeInOut" as const, repeat: Infinity},
-  },
-});
-
-const pulseRing = (delay: number = 0) => ({
-  animate: {
-    scale: [1, 1.08, 1],
-    opacity: [0.35, 0.55, 0.35],
-    transition: {
-      duration: 4,
-      ease: "easeInOut" as const,
-      repeat: Infinity,
-      delay,
-    },
-  },
-});
+import {fadeUp, floatVariant, pulseRing} from "../auth.utils";
 
 export const AuthLayout = () => {
   const location = useLocation();
@@ -39,8 +9,8 @@ export const AuthLayout = () => {
 
   const features = [
     {icon: Printer, label: "Custom Printing", desc: "High-quality prints"},
-    {icon: Palette, label: "Design Studio", desc: "Professional designs"},
-    {icon: Zap, label: "Fast Production", desc: "Quick turnaround"},
+    {icon: Palette, label: "Design Studio",   desc: "Professional designs"},
+    {icon: Zap,     label: "Fast Production", desc: "Quick turnaround"},
   ];
 
   return (

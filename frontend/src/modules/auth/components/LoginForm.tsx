@@ -3,25 +3,8 @@ import {useNavigate} from "react-router-dom";
 import {Mail, Lock, AlertCircle, ArrowRight, Eye, EyeOff} from "lucide-react";
 import {motion, AnimatePresence} from "framer-motion";
 import authService from "@/services/authService";
-import type {UserRole} from "@/context/AuthContext";
-
-// ── Role → Dashboard route map ───────────────────────────────────────────────
-const ROLE_ROUTES: Record<UserRole, string> = {
-  customer: "/customer",
-  admin: "/admin",
-  cashier: "/cashier",
-  designer: "/designer",
-  production: "/production",
-};
-
-const fadeUp = {
-  hidden: {opacity: 0, y: 18},
-  visible: (delay: number = 0) => ({
-    opacity: 1,
-    y: 0,
-    transition: {duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] as const, delay},
-  }),
-};
+import { ROLE_ROUTES } from "../auth.constants";
+import { fadeUp } from "../auth.utils";
 
 export const LoginForm = () => {
   const navigate = useNavigate();

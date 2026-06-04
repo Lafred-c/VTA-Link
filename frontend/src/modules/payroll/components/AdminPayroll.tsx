@@ -11,18 +11,10 @@ import {
   usePayrollData,
   usePendingCashAdvances,
   useCashAdvances,
-  type AttendanceLog, type PayrollRecord, type PayrollPeriod, type PendingCashAdvance, type CashAdvance,
 } from "../hooks/usePayroll";
+import type { AttendanceLog, PayrollRecord, PayrollPeriod, PendingCashAdvance, CashAdvance, ExceptionalLogRow } from "../payroll.types";
+import { fmt, periodLabel } from "../payroll.utils";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
-
-const fmt = (n: number) =>
-  `₱${Math.abs(n).toLocaleString("en-PH", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
-
-const periodLabel = (p: PayrollPeriod) => {
-  const s = new Date(p.periodStart).toLocaleDateString("en-PH", { month: "short", day: "numeric" });
-  const e = new Date(p.periodEnd).toLocaleDateString("en-PH", { month: "short", day: "numeric", year: "numeric" });
-  return `${s} – ${e}`;
-};
 
 function StatCard({ label, value, sub, color = "text-gray-900" }: {
   label: string; value: string; sub?: string; color?: string;
@@ -37,13 +29,6 @@ function StatCard({ label, value, sub, color = "text-gray-900" }: {
 }
 
 // ─── Flagged Employees Panel ──────────────────────────────────────────────────
-interface ExceptionalLogRow {
-  employee_id: string;
-  punch_date: string;
-  is_incomplete: boolean;
-  hours_counted: number;
-}
-
 function FlaggedEmployeesPanel({ attendanceLogs, activePeriodId, refresh }: {
   attendanceLogs: AttendanceLog[];
   activePeriodId: string | null;

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { renderSupplierNameWithFlag } from "../inventory.utils";
 import { useSearchParams } from "react-router-dom";
 import { X } from "lucide-react";
 import { SearchBar } from "@/components/ui/SearchBar";
@@ -11,7 +12,7 @@ import { InfoBanner } from "@/components/feedback/InfoBanner";
 import { MaterialsTable } from "./shared/MaterialsTable";
 import { MaterialDetailsModal } from "./shared/MaterialDetailsModal";
 import { EditMaterialModal } from "./shared/EditMaterialModal";
-import { Package, CheckCircle, AlertTriangle, Star, Flag, Info } from "lucide-react";
+import { Package, CheckCircle, AlertTriangle } from "lucide-react";
 import type { Material } from "@/Types";
 import { useInventoryData, useDeliveries } from "../hooks/useInventory";
 
@@ -29,34 +30,7 @@ const Modal = ({ show, onClose, title, children }: { show: boolean; onClose: () 
   );
 };
 
-const renderSupplierNameWithFlag = (s: any, nameKey: string = "name", categoryKey: string = "flag_category", onViewNote?: (name: string, note: string) => void) => {
-  const category = s[categoryKey] || s.flagCategory;
-  const name = s[nameKey];
-  const notes = s.flag_notes || s.flagNotes;
-  return (
-    <span className="flex items-center gap-1.5">
-      {category === "Preferred" && <Star size={14} className="text-yellow-500 fill-yellow-500 flex-shrink-0" />}
-      {category === "Warning" && <AlertTriangle size={14} className="text-orange-500 flex-shrink-0" />}
-      {category === "Critical" && <Flag size={14} className="text-red-500 fill-red-500 flex-shrink-0" />}
-      <span className={category === "Critical" ? "text-red-600 font-semibold" : category === "Warning" ? "text-orange-600 font-medium" : ""}>{name}</span>
-      {notes && (
-        <button
-          type="button"
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            if (onViewNote) onViewNote(name, notes);
-            else alert(`Supplier Note for ${name}:\n${notes}`);
-          }}
-          className="text-gray-400 hover:text-cyan-600 focus:outline-none flex-shrink-0 ml-1"
-          title="View Note"
-        >
-          <Info size={14} />
-        </button>
-      )}
-    </span>
-  );
-};
+// Imported from inventory.utils.ts
 
 const ProductionInventory = () => {
   const [searchQuery, setSearchQuery] = useState("");

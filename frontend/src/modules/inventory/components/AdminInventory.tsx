@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
+import { getFlagPriority, renderSupplierNameWithFlag } from "../inventory.utils";
 import { useSearchParams } from "react-router-dom";
-import { Plus, Package, CheckCircle, AlertTriangle, X, Truck, Clock, ChevronDown, MoreVertical, Star, Flag, Info, FileBarChart } from "lucide-react";
+import { Plus, Package, CheckCircle, AlertTriangle, X, Truck, Clock, ChevronDown, MoreVertical, FileBarChart } from "lucide-react";
 import { SearchBar } from "@/components/ui/SearchBar";
 import { StatusCard } from "@/components/ui/StatusCard";
 import { Button } from "@/components/ui/Button";
@@ -37,42 +38,7 @@ const Modal = ({ show, onClose, title, children, width = "max-w-2xl" }: { show: 
     </div>
   );
 };
-
-const getFlagPriority = (category?: string) => {
-  if (category === "Preferred") return 1;
-  if (category === "Warning") return 3;
-  if (category === "Critical") return 4;
-  return 2;
-};
-
-const renderSupplierNameWithFlag = (s: any, nameKey: string = "name", categoryKey: string = "flag_category", onViewNote?: (name: string, note: string) => void) => {
-  const category = s[categoryKey] || s.flagCategory;
-  const name = s[nameKey];
-  const notes = s.flag_notes || s.flagNotes;
-  return (
-    <span className="flex items-center gap-1.5">
-      {category === "Preferred" && <Star size={14} className="text-yellow-500 fill-yellow-500 flex-shrink-0" />}
-      {category === "Warning" && <AlertTriangle size={14} className="text-orange-500 flex-shrink-0" />}
-      {category === "Critical" && <Flag size={14} className="text-red-500 fill-red-500 flex-shrink-0" />}
-      <span className={category === "Critical" ? "text-red-600 font-semibold" : category === "Warning" ? "text-orange-600 font-medium" : ""}>{name}</span>
-      {notes && (
-        <button
-          type="button"
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            if (onViewNote) onViewNote(name, notes);
-            else alert(`Supplier Note for ${name}:\n${notes}`);
-          }}
-          className="text-gray-400 hover:text-cyan-600 focus:outline-none flex-shrink-0 ml-1"
-          title="View Note"
-        >
-          <Info size={14} />
-        </button>
-      )}
-    </span>
-  );
-};
+// Imported from inventory.utils.ts
 
 const AdminInventory = () => {
   const toast = useToast();

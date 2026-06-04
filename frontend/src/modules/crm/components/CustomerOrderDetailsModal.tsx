@@ -5,8 +5,6 @@ import {
   Clock,
   Palette,
   CreditCard,
-  Hammer,
-  Truck,
   CheckCircle2,
   User,
   Package,
@@ -17,39 +15,8 @@ import {
 import {fmtDate} from "@/util/formatters";
 import {SukiBadge} from "@/components/ui/SukiBadge";
 
-type OrderStatus =
-  | "Queue"
-  | "Design"
-  | "Payment"
-  | "Production"
-  | "Pick-up"
-  | "Complete";
-
-// Map our Supabase backend status to these 6 steps
-const mapBackendStatusToStep = (status: string): OrderStatus => {
-  const s = status.toLowerCase();
-  if (s === "in_queue" || s === "in queue") return "Queue";
-  if (s === "designing") return "Design";
-  if (s === "payment") return "Payment";
-  if (s === "production") return "Production";
-  if (s === "pickup") return "Pick-up";
-  if (s === "completed") return "Complete";
-  return "Queue";
-};
-
-const sanitizeStorageUrl = (url: string | null | undefined): string => {
-  if (!url) return "";
-  return url.replace("/order-attachments/", "/order-files/");
-};
-
-const statusSteps: {status: OrderStatus; icon: any; label: string}[] = [
-  {status: "Queue", icon: Clock, label: "Queue"},
-  {status: "Design", icon: Palette, label: "Design"},
-  {status: "Payment", icon: CreditCard, label: "Payment"},
-  {status: "Production", icon: Hammer, label: "Production"},
-  {status: "Pick-up", icon: Truck, label: "Pick-up"},
-  {status: "Complete", icon: CheckCircle2, label: "Complete"},
-];
+import { statusSteps } from "../crm.constants";
+import { mapBackendStatusToStep, sanitizeStorageUrl } from "../crm.utils";
 
 interface CustomerOrderDetailsModalProps {
   isOpen: boolean;

@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, Minus, Plus, Upload, AlertTriangle } from "lucide-react";
 import { FileUploadModal } from "./FileUploadModal";
 import { NoFileConfirmModal } from "./NoFileConfirmModal";
+import { sanitizeStorageUrl } from "../crm.utils";
 
 interface Product {
   id: string | number;
@@ -37,10 +38,7 @@ interface AddToCartModalProps {
   maxCapacity?: number;
 }
 
-const sanitizeStorageUrl = (url: string | null | undefined): string => {
-  if (!url) return "";
-  return url.replace("/order-attachments/", "/order-files/");
-};
+// Util function imported from crm.utils.ts
 
 export const AddToCartModal: React.FC<AddToCartModalProps> = ({
   isOpen,

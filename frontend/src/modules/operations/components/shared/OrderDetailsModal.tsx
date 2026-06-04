@@ -26,13 +26,9 @@ import {FileUploadModal} from "@/modules/crm/components/FileUploadModal";
 import {
   fmtDate,
 } from "@/util/formatters";
+import { sanitizeStorageUrl } from "../../operations.utils";
 import {ConfirmModal} from "@/components/feedback/ConfirmModal";
 import {SukiBadge} from "@/components/ui/SukiBadge";
-
-const sanitizeStorageUrl = (url: string | null | undefined): string => {
-  if (!url) return "";
-  return url.replace("/order-attachments/", "/order-files/");
-};
 
 interface OrderDetailsModalProps {
   isOpen: boolean;

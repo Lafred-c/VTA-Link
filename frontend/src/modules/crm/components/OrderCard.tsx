@@ -2,25 +2,16 @@ import React from "react";
 import {motion} from "framer-motion";
 import {
   Eye,
-  CreditCard,
   MessageCircle,
   Trash2,
-  Clock,
-  Palette,
   CheckCircle2,
-  Hammer,
-  Truck,
   Package,
 } from "lucide-react";
 import { SukiBadge } from "@/components/ui/SukiBadge";
 
-export type OrderStatus =
-  | "Queue"
-  | "Design"
-  | "Payment"
-  | "Production"
-  | "Pick-up"
-  | "Complete";
+import type { OrderStatus } from "../crm.types";
+import { statusSteps } from "../crm.constants";
+import { getStatusLabel } from "../crm.utils";
 
 export interface Order {
   id: string;
@@ -46,33 +37,7 @@ interface OrderCardProps {
   onDelete?: (id: string) => void;
 }
 
-const statusSteps: {status: OrderStatus; icon: any; label: string}[] = [
-  {status: "Queue", icon: Clock, label: "Queue"},
-  {status: "Design", icon: Palette, label: "Design"},
-  {status: "Payment", icon: CreditCard, label: "Payment"},
-  {status: "Production", icon: Hammer, label: "Production"},
-  {status: "Pick-up", icon: Truck, label: "Pick-up"},
-  {status: "Complete", icon: CheckCircle2, label: "Complete"},
-];
-
-const getStatusLabel = (status: OrderStatus) => {
-  switch (status) {
-    case "Queue":
-      return "In Queue";
-    case "Design":
-      return "Designing";
-    case "Payment":
-      return "Payment Confirmation";
-    case "Production":
-      return "In Production";
-    case "Pick-up":
-      return "Ready to Pickup";
-    case "Complete":
-      return "Complete";
-    default:
-      return status;
-  }
-};
+// Helpers imported from crm.constants and crm.utils
 
 export const OrderCard: React.FC<OrderCardProps> = ({
   order,

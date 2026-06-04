@@ -7,30 +7,9 @@ import {
 import type { Order } from "@/Types";
 import { getPaymentStatusColor, getOrderStatusColor } from "@/util/formatters";
 import { SukiBadge } from "@/components/ui/SukiBadge";
-
-// ── Status timeline steps ────────────────────────────────────────────────────
-type CardStatus = "Queue" | "Design" | "Payment" | "Production" | "Pick-up" | "Complete";
-
-const statusSteps: { status: CardStatus; icon: any; label: string }[] = [
-  { status: "Queue", icon: Clock, label: "Queue" },
-  { status: "Design", icon: Palette, label: "Design" },
-  { status: "Payment", icon: CreditCard, label: "Payment" },
-  { status: "Production", icon: Hammer, label: "Production" },
-  { status: "Pick-up", icon: Truck, label: "Pick-up" },
-  { status: "Complete", icon: CheckCircle2, label: "Complete" },
-];
-
-// Map backend status → card status
-const mapStatus = (status: string): CardStatus => {
-  const map: Record<string, CardStatus> = {
-    "In Queue": "Queue", "Designing": "Design", "Design Approval": "Design",
-    "Payment": "Payment", "Production": "Production", "Pickup": "Pick-up",
-    "Completed": "Complete", "Cancelled": "Queue", // Cancelled doesn't follow the normal flow
-  };
-  return map[status] || "Queue";
-};
-
-const getPaymentColor = getPaymentStatusColor;
+import type { CardStatus } from "../../operations.types";
+import { statusSteps } from "../../operations.constants";
+import { mapStatusStep as mapStatus } from "../../operations.utils";
 
 // ── Single card ─────────────────────────────────────────────────────────────
 const StaffOrderCard = ({ order, onView, onEdit, onDelete, onPay, hideDeleteWhen, hidePayWhen, isHighlighted, highlightedRef }: {

@@ -7,20 +7,14 @@ import {
   FileBarChart,
 } from "lucide-react";
 import { useCashierCashAdvances } from "../hooks/useOperations";
+import { CA_LIMIT } from "../operations.constants";
+import { fmt } from "../operations.utils";
 import { useDashboard, useEmployees } from "@/modules/admin";
-import type { CashAdvanceEligibility } from "../hooks/useOperations";
+import type { CashAdvanceEligibility } from "../operations.types";
+import { fmtMoney } from "@/util/formatters";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
 import { PageSummaryCard } from "@/components/ui/PageSummaryCard";
 import { downloadCSV, printReport, buildKpiHtml, fmtMoneyFull } from "@/util/reportExport";
-
-const CA_LIMIT = 2000;
-const fmt = (n: number) => `₱${Math.abs(n).toLocaleString("en-PH", { minimumFractionDigits: 2 })}`;
-function fmtMoney(v: number | undefined | null) {
-  const n = Number(v) || 0;
-  if (n >= 1_000_000) return `₱${(n / 1_000_000).toFixed(1)}M`;
-  if (n >= 10_000)    return `₱${(n / 1_000).toFixed(1)}k`;
-  return `₱${n.toLocaleString()}`;
-}
 
 const KpiCard: React.FC<{
   title: string; value: string; sub?: string;
