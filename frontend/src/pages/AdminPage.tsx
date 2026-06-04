@@ -1,5 +1,5 @@
-import SharedDashboardLayout from "../components/Shared/UI/SharedDashboardLayout";
-import { adminSidebarItems } from "../config/sidebarConfigs";
+import SharedDashboardLayout from "@/components/layout/SharedDashboardLayout";
+import { adminSidebarItems } from "@/config/sidebarConfigs";
 
 const AdminPage = () => {
   return (

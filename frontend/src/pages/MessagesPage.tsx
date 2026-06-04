@@ -1,4 +1,4 @@
-import CustomerMessages from "../components/Customer/CustomerMessages";
+import { CustomerMessages } from '@/modules/crm';
 
 export const MessagesPage = () => {
   return <CustomerMessages />;

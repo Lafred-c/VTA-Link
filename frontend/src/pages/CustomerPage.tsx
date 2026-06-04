@@ -1,9 +1,5 @@
-import HomePage from "../components/Customer/HomePage";
+import { HomePage } from '@/modules/crm';
 
 export const CustomerPage = () => {
-  return (
-    <>
-      <HomePage />
-    </>
-  );
+  return <HomePage />;
 };

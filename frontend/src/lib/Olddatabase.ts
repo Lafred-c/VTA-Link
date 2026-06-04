@@ -2,8 +2,8 @@
 // // Direct Supabase queries — NO Express middleman
 // // RLS handles all security. This file is the ONLY data access layer.
 
-// import { supabase } from "../config/supabaseClient";
-// import { sanitizeInput, isValidUUID } from "../util/security";
+// import { supabase } from "@/config/supabaseClient";
+// import { sanitizeInput, isValidUUID } from "@/util/security";
 
 // /**
 //  * Uploads a file to the 'order-files' storage bucket.

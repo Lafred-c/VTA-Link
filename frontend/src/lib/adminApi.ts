@@ -6,7 +6,7 @@
 //
 // Deactivate/reactivate use direct Supabase (RLS: users_admin_update_any)
 
-import { supabase } from '../config/supabaseClient';
+import { supabase } from '@/config/supabaseClient';
 
 const API_BASE = (import.meta.env.VITE_API_BASE_URL || 'http://localhost:5000').replace(/\/+$/, '');
 

@@ -1,8 +1,8 @@
 // frontend/src/services/authService.ts
 // Centralized auth service — all Supabase Auth calls in one place
 
-import { supabase } from '../config/supabaseClient';
-import type { UserRole } from '../context/AuthContext';
+import { supabase } from '@/config/supabaseClient';
+import type { UserRole } from '@/context/AuthContext';
 
 interface LoginResult {
   success: boolean;

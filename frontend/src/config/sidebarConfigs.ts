@@ -7,7 +7,7 @@ import {
   DollarSign as PayrollIcon,
   Activity as ActivityIcon,
 } from "lucide-react";
-import type {SidebarItem} from "../components/Shared/UI/SharedSideBar";
+import type {SidebarItem} from "@/components/layout/SharedSideBar";
 
 export const customerSidebarItems: SidebarItem[] = [
   {label: "Home", icon: HouseIcon, path: "/customer", end: true},

@@ -1,5 +1,5 @@
-import SharedDashboardLayout from "../components/Shared/UI/SharedDashboardLayout";
-import { productionSidebarItems } from "../config/sidebarConfigs";
+import SharedDashboardLayout from "@/components/layout/SharedDashboardLayout";
+import { productionSidebarItems } from "@/config/sidebarConfigs";
 
 const ProductionPage = () => {
   return (

@@ -1,5 +1,5 @@
-import SharedDashboardLayout from "../components/Shared/UI/SharedDashboardLayout";
-import { customerSidebarItems } from "../config/sidebarConfigs";
+import SharedDashboardLayout from "@/components/layout/SharedDashboardLayout";
+import { customerSidebarItems } from "@/config/sidebarConfigs";
 
 export const RootLayout = () => {
   return (
