@@ -18,7 +18,7 @@ export async function updateLastSeen() {
     try {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) return;
-      await supabase.from("users").update({ last_seen: new Date().toISOString() }).eq("id", user.id);
+      await supabase.from("users").update({ last_seen_at: new Date().toISOString() }).eq("id", user.id);
     } catch (e) { console.error("Failed to update last seen", e); }
   }
 

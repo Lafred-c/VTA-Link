@@ -1,13 +1,13 @@
 import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Eye, CreditCard, Trash2, Clock, Palette,
-  CheckCircle2, Hammer, Truck, Package, Edit2, AlertCircle
+  Eye, CreditCard, Trash2, Clock,
+  CheckCircle2, Package, Edit2, AlertCircle
 } from "lucide-react";
 import type { Order } from "@/Types";
 import { getPaymentStatusColor, getOrderStatusColor } from "@/util/formatters";
 import { SukiBadge } from "@/components/ui/SukiBadge";
-import type { CardStatus } from "../../operations.types";
+
 import { statusSteps } from "../../operations.constants";
 import { mapStatusStep as mapStatus } from "../../operations.utils";
 
@@ -99,7 +99,7 @@ const StaffOrderCard = ({ order, onView, onEdit, onDelete, onPay, hideDeleteWhen
       <div className="flex justify-between items-center">
         <div>
           <span className="text-lg font-bold text-amber-500">₱{order.totalAmount.toLocaleString()}</span>
-          <span className={`ml-2 px-2 py-0.5 rounded-full border text-xs font-semibold ${getPaymentColor(order.paymentStatus)}`}>{order.paymentStatus}</span>
+          <span className={`ml-2 px-2 py-0.5 rounded-full border text-xs font-semibold ${getPaymentStatusColor(order.paymentStatus)}`}>{order.paymentStatus}</span>
           {order.hasUnreadDecline && (
             <span className="ml-2 inline-flex items-center text-red-500" title={`Decline Reason: ${order.lastDeclineReason}`}>
               <AlertCircle size={14} />

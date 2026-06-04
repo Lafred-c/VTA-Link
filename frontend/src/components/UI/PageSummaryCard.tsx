@@ -31,10 +31,10 @@ export const PageSummaryCard: React.FC<PageSummaryProps> = ({
 
   return (
     <div className="bg-gradient-to-r from-slate-50 to-cyan-50/30 rounded-xl border border-slate-200 shadow-sm overflow-hidden">
-      {/* Header */}
-      <button
+      {/* Header — using div+onClick so inner buttons aren't nested inside a button */}
+      <div
+        className="w-full flex items-center justify-between px-5 py-3 hover:bg-slate-50/50 transition-colors cursor-pointer"
         onClick={() => setCollapsed(!collapsed)}
-        className="w-full flex items-center justify-between px-5 py-3 hover:bg-slate-50/50 transition-colors"
       >
         <div className="flex items-center gap-2">
           {icon && <span className="text-cyan-600">{icon}</span>}
@@ -45,6 +45,7 @@ export const PageSummaryCard: React.FC<PageSummaryProps> = ({
             <div className="flex gap-1" onClick={(e) => e.stopPropagation()}>
               {onDownloadCSV && (
                 <button
+                  type="button"
                   onClick={onDownloadCSV}
                   className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-slate-600 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 hover:border-cyan-300 transition-all active:scale-95"
                   title="Download CSV"
@@ -54,6 +55,7 @@ export const PageSummaryCard: React.FC<PageSummaryProps> = ({
               )}
               {onPrint && (
                 <button
+                  type="button"
                   onClick={onPrint}
                   className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-bold text-slate-600 bg-white border border-slate-200 rounded-lg hover:bg-slate-50 hover:border-cyan-300 transition-all active:scale-95"
                   title="Print Report"
@@ -63,13 +65,17 @@ export const PageSummaryCard: React.FC<PageSummaryProps> = ({
               )}
             </div>
           )}
-          {collapsed ? (
-            <ChevronDown size={16} className="text-slate-400" />
-          ) : (
-            <ChevronUp size={16} className="text-slate-400" />
-          )}
+          <button
+            type="button"
+            aria-label={collapsed ? "Expand summary" : "Collapse summary"}
+            aria-expanded={!collapsed}
+            onClick={(e) => { e.stopPropagation(); setCollapsed(!collapsed); }}
+            className="p-0.5 rounded text-slate-400 hover:text-slate-600 transition-colors"
+          >
+            {collapsed ? <ChevronDown size={16} /> : <ChevronUp size={16} />}
+          </button>
         </div>
-      </button>
+      </div>
 
       {/* Body */}
       {!collapsed && (
