@@ -39,21 +39,9 @@ operix/
     └── .env        ← place .env here
 ```
 
-> ⚠️ The files are named `.env` — make sure they stay named exactly that (no `.txt`, no renaming).
-> On Windows, if File Explorer hides it, that's fine — just paste it into the folder.
-
 ---
 
-## Step 3 — Install Backend Dependencies
-
-```bash
-cd backend
-npm install
-```
-
----
-
-## Step 4 — Install Frontend Dependencies
+## Step 4 — Install Dependencies
 
 Open a **new terminal tab**, then:
 ```bash
