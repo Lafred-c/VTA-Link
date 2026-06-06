@@ -35,9 +35,8 @@ You should have received **two** `.env` files from the team lead. Place them exa
 ```
 operix/
 ├── backend/
-│   └── .env        ← place backend .env here
 └── frontend/
-    └── .env        ← place frontend .env here
+    └── .env        ← place .env here
 ```
 
 > ⚠️ The files are named `.env` — make sure they stay named exactly that (no `.txt`, no renaming).
