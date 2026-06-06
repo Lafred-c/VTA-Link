@@ -41,7 +41,7 @@ operix/
 
 ---
 
-## Step 4 — Install Dependencies
+## Step 3 — Install Dependencies
 
 Open a **new terminal tab**, then:
 ```bash
@@ -51,18 +51,9 @@ npm install
 
 ---
 
-## Step 5 — Run the Project
+## Step 4 — Run the Project
 
-You need **two terminals open at the same time**.
-
-**Terminal 1 — start the backend:**
-```bash
-cd backend
-npm run dev
-```
-✅ You should see: `OPERIX BACKEND | Port: 5000 | DB: Connected ✓`
-
-**Terminal 2 — start the frontend:**
+**Terminal 1 — start the frontend:**
 ```bash
 cd frontend
 npm run dev
