@@ -1,4 +1,4 @@
-# Operix — Team Setup Guide
+# VTA-Link — Team Setup Guide
 
 Get the project running locally in 5 steps.
 
