@@ -28,9 +28,7 @@ cd operix
 
 ---
 
-## Step 2 — Place the `.env` Files
-
-You should have received **two** `.env` files from the team lead. Place them exactly as shown:
+## Step 2 — Place the `.env` file on the frontend folder
 
 ```
 operix/
